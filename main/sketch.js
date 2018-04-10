@@ -7,23 +7,45 @@ class character {
     this.siz = _siz;
   }
   move() {
+    if ( keyCode === 97 ) {
+      this.vel.x -= this.spd;
+    }
+    //d
+    if ( keyCode === 100 ) {
+      this.vel.x += this.spd;
+    }
+
+    //s
+    if ( keyCode === 87 ) {
+      this.vel.y += this.spd;
+    }
+
+    //w
+    if ( keyCode === 119 ) {
+      this.vel.y -= this.spd;
+    }
+
+    print( keyCode );
     this.pos.add( this.vel );
     this.vel.add( this.grv );
   }
   show() {
-    rect( this.pos.x, this.pos.y, this.pos.x + this.size, this.pos.y + this.size );
+    fill( 255 );
+    rect( this.pos.x, this.pos.y, this.siz, this.siz );
   }
   update() {
     this.move();
     this.show();
+    this.vel.limit( 10 );
   }
+
 }
 
 let character1;
 
 function setup() {
-  createCanvas( windowWidth, windowHeight );
-  character1 = new character( cV( 0, 2 ), cV( width / 2, height / 2 ), 2, cV( 0, 0 ), 10 );
+  createCanvas( 500, 500 );
+  character1 = new character( createVector( 0, 0 ), createVector( width / 2, height / 2 ), 2, createVector( 0, 0 ), 10 );
 }
 
 function cV( a, b ) {
@@ -31,5 +53,6 @@ function cV( a, b ) {
 }
 
 function draw() {
-
+  background( 200 );
+  character1.update();
 }
