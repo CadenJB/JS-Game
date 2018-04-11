@@ -7,10 +7,17 @@ class character {
     this.siz = _siz;
   }
   clamp() {
-    if ( this.pos.y = height ) {
-      this.pos.y = height;
+    print( height + "\t" + ( this.pos.y + this.siz ) );
+    if ( this.pos.y + this.siz > height ) {
       this.vel.y = 0;
+      this.pos.y = height - this.siz;
+      print( "\ndab\n" );
     }
+  }
+
+  LSpd() {
+    this.vel.x = round( this.vel.x );
+    this.vel.y = round( this.vel.y );
   }
   move() {
     //a
@@ -25,7 +32,7 @@ class character {
 
     //s
     if ( keyCode === 87 ) {
-      this.vel.y += this.spd;
+      this.vel.y += 0;
     }
 
     //w
@@ -34,13 +41,17 @@ class character {
     }
 
     this.pos.add( this.vel );
-    this.vel.add( this.grv );
+    //this.vel.add( this.grv );
   }
   show() {
     fill( 255 );
     rect( this.pos.x, this.pos.y, this.siz, this.siz );
   }
   update() {
+    stroke( 100 );
+    fill( 0 );
+    text( "Vel.x: " + ( this.vel.x ) + "\tVel.y:  " + ( this.vel.y ), this.pos.x, this.pos.y );
+    this.LSpd();
     this.move();
     this.clamp();
     this.show();
@@ -52,7 +63,7 @@ let character1;
 
 function setup() {
   createCanvas( 500, 500 );
-  character1 = new character( createVector( 0, 1 ), createVector( width / 2, height / 2 ), 2, createVector( 0, 0 ), 10 );
+  character1 = new character( cV( 0, 0 ), cV( width / 2, height / 2 ), 0.5, cV( 0, 0 ), 10 );
 }
 
 function cV( a, b ) {
