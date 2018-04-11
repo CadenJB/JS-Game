@@ -6,10 +6,18 @@ class character {
     this.grv = _grv;
     this.siz = _siz;
   }
+  clamp() {
+    if ( this.pos.y = height ) {
+      this.pos.y = height;
+      this.vel.y = 0;
+    }
+  }
   move() {
+    //a
     if ( keyCode === 97 ) {
       this.vel.x -= this.spd;
     }
+
     //d
     if ( keyCode === 100 ) {
       this.vel.x += this.spd;
@@ -25,7 +33,6 @@ class character {
       this.vel.y -= this.spd;
     }
 
-    print( keyCode );
     this.pos.add( this.vel );
     this.vel.add( this.grv );
   }
@@ -35,22 +42,23 @@ class character {
   }
   update() {
     this.move();
+    this.clamp();
     this.show();
     this.vel.limit( 10 );
   }
-
 }
 
 let character1;
 
 function setup() {
   createCanvas( 500, 500 );
-  character1 = new character( createVector( 0, 0 ), createVector( width / 2, height / 2 ), 2, createVector( 0, 0 ), 10 );
+  character1 = new character( createVector( 0, 1 ), createVector( width / 2, height / 2 ), 2, createVector( 0, 0 ), 10 );
 }
 
 function cV( a, b ) {
   return createVector( a, b );
 }
+
 
 function draw() {
   background( 200 );
