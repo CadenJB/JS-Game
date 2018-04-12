@@ -51,14 +51,14 @@ class character {
   }
   debug() {
     fill( 255 );
-    print( "pos.x: " + this.pos.x + "\tpos.y" + this.pos.y );
+    print( "pos.x: " + this.pos.x + "\tpos.y: " + this.pos.y );
   }
 }
 
 let dude;
 
 function setup() {
-  createCanvas( 500, 500 );
+  createCanvas( 1300, 1000 );
   dude = new character( 10, createVector( width / 2, height / 2 ), 10 );
 }
 
