@@ -1,5 +1,5 @@
 // NOTE: Game will be 2D, topdown, shooter(?), platformer(?)
-// TODO: create character class.
+// NOTE: use For Loops for collision detection.
 class character {
   constructor( _size, _pos, _spd ) {
     this.size = _size;
@@ -55,13 +55,13 @@ class character {
   }
 }
 
+//Variables
 let dude;
 
 function setup() {
   createCanvas( 1300, 1000 );
   dude = new character( 10, createVector( width / 2, height / 2 ), 10 );
 }
-
 
 function draw() {
   background( 0 );
