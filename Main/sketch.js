@@ -4,13 +4,13 @@ let rocket;
 let rockets;
 
 function setup() {
-  createCanvas( 300, 300 );
-  bulletImage = loadImage( "/../sprites/bullet.png" );
+  createCanvas( 600, 600 );
+  bulletImage = loadImage( "/../sprites/rocket/bullet.png" );
   ship = createSprite( width / 2, height / 2, 32, 32 );
   shipImage = loadImage( "/../sprites/ship/ship.png" );
-  shipSpriteSheet = loadSpriteSheet( "/../sprites/shipSheet.png", 32, 32, 5 );
   ship.addImage( "normal", shipImage );
-  ship.addAnimation( "thrust", "/../sprites/ship/sprite_0.png", "/../sprites/ship/sprite_4.png" );
+  ship.addAnimation( "thrust", "/../sprites/ship/ship_0.png", "/../sprites/ship/ship_1.png", "/../sprites/ship/ship_2.png", "/../sprites/ship/ship_3.png"
+    "/../sprites/ship/ship_4.png" );
   rockets = new Group();
   ships = new Group();
   ships.add( ship );

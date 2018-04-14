@@ -1,2 +1,0 @@
-TODO learn how to use sprites with P5JS & JS.
-TODO actually draw the sprites.
