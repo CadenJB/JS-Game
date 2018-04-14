@@ -1,5 +1,4 @@
-var ship;
-var bullets = [];
+let ship;
 
 class character {
   constructor( _x, _y, _w, _h ) {
@@ -9,13 +8,11 @@ class character {
     this.obj.friction = 0.01;
   }
   update() {
-    //general update functions for character.
     this.move();
     this.obj.update();
   }
   move() {
     //Movement for character.
-
     //turn logic:
     if ( keyIsDown( LEFT_ARROW ) ) {
       this.obj.rotation -= 3;
@@ -23,25 +20,10 @@ class character {
     if ( keyIsDown( RIGHT_ARROW ) ) {
       this.obj.rotation += 3;
     }
-    //forward movement:
+    //Thruster
     if ( keyIsDown( UP_ARROW ) ) {
       this.obj.addSpeed( -0.1, this.obj.rotation + 90 );
     }
-  }
-}
-
-class bullet {
-  constuctor( _x, _y, _w, _h ) {
-    this.obj = createSprite( _x, _y, _w, _h );
-    this.obj.maxSpeed( 7 );
-    this.obj.setSpeed( 0, 0 );
-    this.obj.friction( 0 );
-    this.direct = 0;
-  }
-  move( direct, cX, cY ) {
-    //shoots the bullet in direction DIRECT from point (cX, cY).
-    this.obj.position( cX, xY );
-    this.obj.setSpeed( 7, direct );
   }
 }
 
@@ -56,19 +38,22 @@ function screenWrap() {
   }
 }
 
+var rockets = [];
+
 function setup() {
   //initialized canvas.
   createCanvas( 800, 600 );
   //loaded sprites for ship and bullet.
   shipImage = loadImage( "/../sprites/ship.png" );
   bulletImage = loadImage( "/../sprites/bullet.png" );
-  //assigned ship and bullets | applied images.
-  ship = new character( width / 2, height / 2, 32, 32 );
+  //assigned ship and | applied images.
   for ( var i = 0; i < 10; i++ ) {
-    bullets[ i ] = new bullet( -10, -10, 5, 5 );
-    bullets[ i ].addImage( bulletImage );
+    rockets[ i ] = createSprite( -10, -10, 5, 5 );
+    rockets[ i ].addImage( bulletImage );
   }
+  ship = new character( width / 2, height / 2, 32, 32 );
   ship.obj.addImage( shipImage );
+
 }
 
 function draw() {
@@ -77,5 +62,11 @@ function draw() {
   screenWrap();
   drawSprites();
   ship.update();
+  if ( keyIsDown( 32 ) ) {
+    var bullet = createSprite( ship.position.x, ship.position.y, 5, 5 );
+    bullet.addImage( bulletImage );
+    bullet.setSpeed( 10 + ship.getSpeed(), ship.rotation );
+  }
+
   screenWrap();
 }
