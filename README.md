@@ -1,5 +1,5 @@
 # JS-Game
-Remaking asteroids to learn how to use Github and to learn how to program.
+Remaking asteroids to learn how to use Github and to program.
 
 
 ## Licensing
