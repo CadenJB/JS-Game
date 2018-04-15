@@ -1,9 +1,9 @@
 let ship;
-let ships;
 let rocket;
 let rockets;
 let asteroid;
 let asteroids;
+let hitParticle;
 
 function setup() {
   createCanvas( 1000, 1000 );
@@ -15,28 +15,21 @@ function setup() {
   ship.addAnimation( "thrust", "../sprites/ship/ship/ship_0.png", "../sprites/ship/ship/ship_4.png" );
   ship.addAnimation( "win", "../sprites/ship/winShip/ship0.png", "../sprites/ship/winShip/ship8.png" );
   rockets = new Group();
-  ships = new Group();
   asteroids = new Group();
-  ships.add( ship );
-  for ( var i = 0; i < random( 10, 20 ); i++ ) {
+  for ( var i = 0; i < random( 2 ); i++ ) {
     var ang = random( 360 );
     asteroidsL( 1, width / 2 + 1000 * cos( radians( ang ) ), height / 2 + 1000 * sin( radians( ang ) ) );
   }
 }
 
+
 function draw() {
   background( 22, 24, 40 );
   if ( asteroids.length === 0 ) {
-    move( true );
-    rocketL( 600 );
-    drawSprites();
-    screenWrap();
-    ship.changeAnimation( "win" );
-    console.log( "YEEET" );
-
+    megaPowerUp();
   }
   else {
-    rocketL( 1000 );
+    rocketL( 30, false );
     screenWrap();
     move( false );
     asteroids.overlap( rockets, hit );
@@ -46,14 +39,37 @@ function draw() {
 
 }
 
+function megaPowerUp() {
+  move( true );
+  rocketL( 600, true );
+  drawSprites();
+  screenWrap();
+  ship.changeAnimation( "win" );
+  console.log( "YEEET" );
+}
+
 function hit( asteroid, rocket ) {
   if ( asteroid.type + 1 > 2 ) {}
   else {
     for ( var i = 0; i < random( 3, 7 ); i++ )
       asteroidsL( asteroid.type + 1, asteroid.position.x, asteroid.position.y );
   }
+  particle( asteroid.position.x, asteroid.position.y, asteroid.type );
   rocket.remove();
   asteroid.remove();
+}
+
+function particle( x, y, type ) {
+  img = loadImage( "../sprites/hit/hitParticle.png" );
+  hitParticle = createSprite( x, y, 50, 50 );
+  hitParticle.addImage( img );
+  hitParticle.life = 3;
+  if ( type == 2 ) {
+    hitParticle.scale = ( 1 );
+  }
+  else if ( type == 1 ) {
+    hitParticle.scale = ( 3 );
+  }
 }
 
 function asteroidsL( type, x, y ) {
@@ -72,7 +88,8 @@ function asteroidsL( type, x, y ) {
 function move( win ) {
   ship.maxSpeed = 10;
   ship.friction = 0.03;
-  ship.bounce( asteroids );
+  asteroids.bounce( ship );
+  asteroids.bounce( asteroids );
   if ( keyIsDown( UP_ARROW ) ) {
     ship.addSpeed( 1, ship.rotation - 90 );
     if ( win ) ship.changeAnimation( "win" );
@@ -84,8 +101,8 @@ function move( win ) {
   if ( keyIsDown( RIGHT_ARROW ) ) ship.rotation += 6;
 }
 
-function rocketL( life ) {
-  if ( keyIsDown( DOWN_ARROW ) ) {
+function rocketL( life, win ) {
+  if ( win ? keyIsDown( DOWN_ARROW ) : keyWentDown( DOWN_ARROW ) ) {
     rocket = createSprite( ship.position.x, ship.position.y, 5, 5 );
     rocket.addImage( bulletImage );
     rocket.setSpeed( 15 + rocket.getSpeed(), ship.rotation - 90 );
