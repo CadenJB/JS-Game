@@ -5,17 +5,17 @@ let rockets;
 
 function setup() {
   createCanvas( 600, 600 );
+
   bulletImage = loadImage( "/../sprites/rocket/bullet.png" );
-  ship = createSprite( width / 2, height / 2, 32, 32 );
   shipImage = loadImage( "/../sprites/ship/ship.png" );
+  ship = createSprite( width / 2, height / 2, 32, 32 );
   ship.addImage( "normal", shipImage );
-  ship.addAnimation( "thrust", "/../sprites/ship/ship_0.png", "/../sprites/ship/ship_1.png", "/../sprites/ship/ship_2.png", "/../sprites/ship/ship_3.png"
-    "/../sprites/ship/ship_4.png" );
+  ship.setCollider( "circle", 0, 0, 16 );
+  ship.addAnimation( "thrust", "/../sprites/ship/ship_0.png", "/../sprites/ship/ship_1.png",
+    "/../sprites/ship/ship_2.png", "/../sprites/ship/ship_3.png", "/../sprites/ship/ship_4.png" );
   rockets = new Group();
   ships = new Group();
   ships.add( ship );
-
-
 }
 
 function draw() {
@@ -23,13 +23,7 @@ function draw() {
   rocketL();
   screenWrap();
   move();
-  ships.overlap( rockets, );
-
   drawSprites();
-}
-
-function show() {
-
 }
 
 function move() {
