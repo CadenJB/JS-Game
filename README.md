@@ -1,5 +1,6 @@
 # JS-Game
-Remaking asteroids because reasons.
+Remaking asteroids to learn how to use Github and to learn how to program.
+
 
 ## Licensing
 
