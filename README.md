@@ -4,7 +4,7 @@ Remaking asteroids to learn how to use Github and to program.
 
 ## Licensing
 
-`JS-Game` is licened under GNU LGPL 2.1
+`JS-Game` is licened under MIT
 
 This repository includes code from other libraries:  
 * [p5.js](https://github.com/processing/p5.js) is licensed under LGPL 2.1
