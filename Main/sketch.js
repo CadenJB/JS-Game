@@ -5,12 +5,10 @@ let asteroid;
 let asteroids;
 let blackAster;
 let normAster;
-
-
 let hitParticle;
 
 function setup() {
-  createCanvas( 1000, 1000 );
+  createCanvas( 2000, 1000 );
   bulletImage = loadImage( "../sprites/rocket/bullet.png" );
   shipImage = loadImage( "../sprites/ship/ship/ship.png" );
   ship = createSprite( width / 2, height / 2, 32, 32 );
@@ -35,9 +33,14 @@ function setup() {
 
 
 function draw() {
-  background( 22, 24, 40 );
+  background( 46, 56, 84 );
   if ( asteroids.length === 0 ) {
     megaPowerUp();
+  }
+  else if ( ship.health <= 0 ) {
+    fill( 255 );
+    stroke( 255 );
+    text( "You loose xD", widht / 2, height / 2 );
   }
   else {
     rocketL( 30, false );
@@ -58,7 +61,7 @@ function draw() {
 
 function megaPowerUp() {
   move( true );
-  rocketL( 600, true );
+  rocketL( 60000, true );
   drawSprites();
   screenWrap();
   ship.changeAnimation( "win" );
