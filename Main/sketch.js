@@ -14,7 +14,7 @@ function setup() {
   bulletImage = loadImage( "../sprites/rocket/bullet.png" );
   shipImage = loadImage( "../sprites/ship/ship/ship.png" );
   ship = createSprite( width / 2, height / 2, 32, 32 );
-  ship.health = 10;
+  ship.health = 50;
   ship.addImage( "normal", shipImage );
   ship.setCollider( "circle", 0, 0, 16 );
   ship.addAnimation( "thrust", "../sprites/ship/ship/ship_0.png", "../sprites/ship/ship/ship_4.png" );
@@ -49,7 +49,7 @@ function draw() {
   }
   //debug();
   fill( 255, 0, 0, 10 );
-  rect( 10, 50, map( ship.health, 0, 10, 0, width - 25 ), 30 );
+  rect( 10, 50, map( ship.health, 0, 50, 0, width - 25 ), 30 );
   for ( var i = 0; i < blackAster.length; i++ ) {
     blackAster[ i ].attractionPoint( 10, ship.position.x, ship.position.y );
   }
