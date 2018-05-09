@@ -1,6 +1,6 @@
 # JS-Game
 Remaking asteroids to learn how to use Github and to program.
-
+ you can press [this link](https://cambrian-node.net/Main/index.html) to play the most up to date version of the game.
 
 ## Licensing
 
