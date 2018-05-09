@@ -3,7 +3,7 @@ Remaking asteroids to learn how to use Github and to program.
 Press [this link](https://cambrian-node.net/Main/index.html) to play the most up to date version of the game.
 
 ## Contact
-If you would like to contact me please email me at contact@cambrian-node.net with your query.
+If you would like to contact me please email me at `contact@cambrian-node.net` with your query.
 
 ## Licensing
 `JS-Game` is licensed under MIT
