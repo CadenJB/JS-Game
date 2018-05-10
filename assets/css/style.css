@@ -1,0 +1,8 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.yeet {
+  backround-color: #2f3a44;
+}
